@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-fast
+spec:
+  type: LoadBalancer
+  selector:
+    app: fast
+  ports:
+  - nodePort: 31000
+    port: 8000
+    targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fast
+  template:
+    metadata:
+      name: fast-pod
+      labels:
+        app: fast
+    spec:
+      containers:
+      - name: fast-con
+        image: 651109015678.dkr.ecr.ap-northeast-2.amazonaws.com/fast:100
