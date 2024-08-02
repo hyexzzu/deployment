@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
       - name: fast-con
-        image: creamday/fast:35
+        image: creamday/fast:38
